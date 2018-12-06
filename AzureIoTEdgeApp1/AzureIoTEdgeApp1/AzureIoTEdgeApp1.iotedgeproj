@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IoTEdgeModule1\IoTEdgeModule1.csproj" />
+    <ProjectReference Include="..\IoTEdgeModule2\IoTEdgeModule2.csproj" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.1.3\build\AzureIoTEdgeProject.Build.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.1.3\build\AzureIoTEdgeProject.Build.targets')" />
   <Import Project="..\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.1.3\build\AzureIoTEdgeProject.Build.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.IoT.Edge.MSBuildTasks.0.1.3\build\AzureIoTEdgeProject.Build.props')" />
