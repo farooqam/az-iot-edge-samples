@@ -9,7 +9,11 @@
             "minDockerVersion": "v1.25",
             "loggingOptions": "",
             "registryCredentials": {
-             
+              "registry1": {
+                "username": "farooq",
+                "password": "e0F+XWNRqBykzXlSK84HVHxJmmClSL3p",
+                "address": "farooq.azurecr.io"
+              }
             }
           }
         },
@@ -48,7 +52,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.iotedgemodule1}",
+              "image": "localhost:5000/iotedgemodule1:0.0.1-amd64.debug",
               "createOptions": ""
             }
           },
@@ -58,7 +62,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.iotedgemodule2}",
+              "image": "localhost:5000/iotedgemodule2:0.0.1-amd64.debug",
               "createOptions": ""
             }
           }
@@ -69,10 +73,11 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "IoTEdgeModule1ToIoTHub": "FROM /messages/modules/IoTEdgeModule1/outputs/* INTO $upstream",
-          "sensorToIoTEdgeModule1": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/IoTEdgeModule1/inputs/input1\")",
-          "IoTEdgeModule2ToIoTHub": "FROM /messages/modules/IoTEdgeModule2/outputs/* INTO $upstream",
-          "sensorToIoTEdgeModule2": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/IoTEdgeModule2/inputs/input1\")"
+          "IoTEdgeModule1ToIoTHub": "FROM /messages/modules/iotedgemodule1/outputs/* INTO $upstream",
+          "sensorToIoTEdgeModule1": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/iotedgemodule1/inputs/input1\")",
+          "IoTEdgeModule2ToIoTHub": "FROM /messages/modules/iotedgemodule2/outputs/* INTO $upstream",
+          "sensorToIoTEdgeModule2": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/iotedgemodule2/inputs/input1\")",
+          "sensorToIoTHub": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
